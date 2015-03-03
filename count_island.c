@@ -3,34 +3,58 @@
 #include "count_island.h"
 
 
-char  **next_line(char *s)
+void  print_island(char *lines)
+{
+	//ft_putstr("plop\n");
+	ft_putstr(lines);
+}
+char  *next_line(char *s, char *lines)
 {
 	int fd;
-	int i;
+	int flag;
+	int j;
 	char *buf;
-	char *lines[1024];
 
-	*lines = ft_strnew(256);
-	buf = malloc(1024 + 1);
+	flag = 0;
+	buf = malloc(1024);
 	fd = open(s, O_RDONLY);
-	while (read(fd, buf, 1024 + 1))
+	while ((j = read(fd, buf, 10)) > 0)
 	{
-		lines[i] = ft_strdup(buf);
-		i++;
-	}	
-	return(*lines);
+		buf[j] = '\0';
+		if (!flag)
+		{
+			lines = ft_strdup(buf);
+			flag++;
+		}
+		else
+			lines = ft_strjoin(lines, buf);
+	}
+	return(lines);
 }
 
 int main(int ac, char **av)
 {
-	char **lines;
-
-	//*lines = ft_strnew(1);
+	char *lines;
+	int i;
+	int j;
+	char *array[1024];
+	
+	i = -1;
+	j = 0;
+	lines = malloc(1024);
+	*array = '\0';
+	//*array = ft_strnew(1024);
 	if (ac == 2)
 	{
-		lines = next_line(av[1]);
-		//print_result(lines);
+		lines = next_line(av[1], lines);
+		while (lines[j])
+		{
+			while(lines[++j] != '\n')
+				array[++i] = ft_strdup(lines);
+		}
+		print_island(lines);
 	}
-	ft_putchar('\n');
+	else
+		ft_putchar('\n');
 	return(0);
 }

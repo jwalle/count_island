@@ -2,6 +2,27 @@
 
 #include "count_island.h"
 
+char *ft_strjoin(char *s1, char *s2)
+{
+	int i;
+	int j;
+	int s1len;
+	int s2len;
+	char *ret;
+
+	i = -1;
+	j = -1;
+	s1len = ft_strlen(s1);
+	s2len = ft_strlen(s2);
+	ret = malloc(s1len + s2len + 1);
+	while(s1[++i])
+		ret[i] = s1[i];
+	while (s2[++j])
+		ret[i + j] = s2[j];
+	ret[j + i] = '\0';
+	return(ret);
+}
+
 char *ft_strnew(int i)
 {
 	char *s;
@@ -57,5 +78,4 @@ void ft_putstr(char *s)
 		ft_putchar(s[i]);
 		i++;
 	}
-	ft_putchar('\n');
 }
