@@ -79,31 +79,50 @@ int  is_number(char s)
 
 int  what_number(char s)
 {
-	return(s - 48);
+	ft_putstr("plop");
+	if (is_number(s))
+		return(s - '0');
+	return (-1);
 }
 
+void ft_fill(char **array, int count, int i, int j)
+{
+	if (array[i][j] == 'X' /*&& array[i][j] != (count + '0')*/)
+	{
+		array[i][j] = count + '0';
+		ft_fill(array, count, i, j + 1);
+		ft_fill(array, count, i + 1, j);
+		if (array[i][j - 1] == 'X')
+			ft_fill(array, count, i, j - 1);
+		if (i > 0 && array[i - 1][j] == 'X')
+			ft_fill(array, count, i - 1, j);
+	}
+}
 
 void   ft_numbers(char **array)
 {
 	int i;
 	int k;
 	int count;
+	int len;
 
-	k = 0;
+	len = ft_strlen(array[0]) + 1;
+	k = -1;
 	count = 0;
-	while (array[k])
+	while (array[++k])
 	{
 		i = 0;
-		while(array[k][i])
+		while(i < len)
 		{
 			if (array[k][i] == 'X')
-				array[k][i] = '8';
+			{
+				ft_fill(array, count, k, i);
+				count++;
+			}
 			i++;
 		}
-		k++;
 	}
 }
-
 
 int main(int ac, char **av)
 {
