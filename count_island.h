@@ -6,6 +6,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 
+char *ft_strsub(char *s, int i);
 char *ft_strjoin(char *s1, char *s2);
 char *ft_strnew(int i);
 char *ft_strdup(char *s);

@@ -2,6 +2,18 @@
 
 #include "count_island.h"
 
+char *ft_strsub(char *s, int i)
+{
+	char *ret;
+	int j;
+
+	j = -1;
+	ret = malloc(i + 1);
+	while(i > ++j)
+		ret[j] = s[j];
+	return (ret);
+}
+
 char *ft_strjoin(char *s1, char *s2)
 {
 	int i;
