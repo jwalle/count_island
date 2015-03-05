@@ -87,7 +87,7 @@ int  what_number(char s)
 
 void ft_fill(char **array, int count, int i, int j)
 {
-	if (array[i][j] == 'X' /*&& array[i][j] != (count + '0')*/)
+	if (array[i][j] == 'X')
 	{
 		array[i][j] = count + '0';
 		ft_fill(array, count, i, j + 1);
